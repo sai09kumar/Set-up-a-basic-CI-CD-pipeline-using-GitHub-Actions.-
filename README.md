@@ -1,11 +1,11 @@
-# 🚀 Automating Web App Deployment with GitHub Actions, Docker & AWS  
+#  Automating Web App Deployment with GitHub Actions, Docker & AWS  
 
 ## Step 1: Set Up AWS EC2 Instance  
 
 ![WhatsApp Image 2025-03-20 at 16 38 48_adf8f617](https://github.com/user-attachments/assets/223c5caa-50cb-4ec7-ba6a-6f7cdf6f78f9)
 
 
-### 🎯 Launch an EC2 Instance  
+###  Launch an EC2 Instance  
 1. Go to **AWS Management Console** → **EC2** → **Launch Instance**  
 2. Choose an **Ubuntu 22.04 AMI**  
 3. Select an instance type (e.g., `t2.micro`)  
