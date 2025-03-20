@@ -45,7 +45,8 @@ app.get("/", (req, res) => res.send("🚀 Web App Running!"));
 app.listen(3000, () => console.log("Server running on port 3000"));
 
  Create a Dockerfile
-
+ 
+```
 FROM node:18
 WORKDIR /app
 COPY package*.json ./
@@ -53,31 +54,38 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 CMD ["node", "index.js"]
- Build and Run the Docker Container Locally
+```
 
+```
 docker build -t mywebapp .
 docker run -d -p 3000:3000 mywebapp
+```
 Step 3: Push Code to GitHub
 
  Initialize Git
-
+```
 git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
 ⬆ Create a GitHub Repo & Push Code
-
+```
+```
 git remote add origin https://github.com/your-username/webapp.git
 git push -u origin main
+```
 
 
 Step 4: Set Up GitHub Actions for CI/CD
-🛠 Create GitHub Actions Workflow
+
+ Create GitHub Actions Workflow
 Go to GitHub → Your Repo → Actions
+
 Click "New Workflow" and set up a workflow manually
+
 Create .github/workflows/deploy.yml
-⚙ deploy.yml Configuration
-\
+ deploy.yml Configuration
+```
 name: Deploy Web App
 
 on:
@@ -113,6 +121,7 @@ jobs:
             docker stop webapp || true
             docker rm webapp || true
             docker run -d -p 80:3000 --name webapp your-dockerhub-username/webapp:latest
+```
             
 Step 5: Store Secrets in GitHub
 
