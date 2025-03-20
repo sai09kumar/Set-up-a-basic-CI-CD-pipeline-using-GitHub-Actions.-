@@ -2,6 +2,9 @@
 
 ## Step 1: Set Up AWS EC2 Instance  
 
+![WhatsApp Image 2025-03-20 at 16 38 48_adf8f617](https://github.com/user-attachments/assets/223c5caa-50cb-4ec7-ba6a-6f7cdf6f78f9)
+
+
 ### 🎯 Launch an EC2 Instance  
 1. Go to **AWS Management Console** → **EC2** → **Launch Instance**  
 2. Choose an **Ubuntu 22.04 AMI**  
@@ -23,6 +26,10 @@ sudo apt install -y docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo usermod -aG docker $USER
+
+![WhatsApp Image 2025-03-20 at 17 40 08_8e7d3cc5](https://github.com/user-attachments/assets/7ee38585-3bcf-4135-ac38-e54c957baeca)
+
+
 Step 2: Create a Web App and Dockerize It
  Create a Simple Node.js Web App
 
