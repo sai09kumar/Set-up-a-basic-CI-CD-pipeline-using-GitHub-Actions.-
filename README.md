@@ -137,17 +137,18 @@ EC2_SSH_KEY → Contents of your your-key.pem file
 
 
 Step 6: Test the CI/CD Pipeline
-
+```
 git add .
 git commit -m "Added GitHub Actions for CI/CD"
 git push origin main
+```
 Check GitHub Actions
 Go to GitHub → Actions
-You should see the pipeline running
+see the pipeline running
 On success, your app is deployed!
  Access the Web App
-Open http://your-ec2-public-ip in your browser
-You should see:
+Open http://your-ec2-public-ip in browser
+we should see:
 ![image](https://github.com/user-attachments/assets/c89c67ab-77b0-4f18-9686-1f5a5b7cf16f)
 
 
