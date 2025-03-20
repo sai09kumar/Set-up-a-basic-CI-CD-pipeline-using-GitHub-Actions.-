@@ -124,6 +124,9 @@ DOCKER_PASSWORD → Your Docker Hub password
 EC2_HOST → Your EC2 Public IP
 EC2_SSH_KEY → Contents of your your-key.pem file
 
+![image](https://github.com/user-attachments/assets/af387804-00c9-45d8-9dba-a511ba1e477c)
+
+
 Step 6: Test the CI/CD Pipeline
 
 git add .
@@ -136,7 +139,8 @@ On success, your app is deployed!
  Access the Web App
 Open http://your-ec2-public-ip in your browser
 You should see:
-" Web App Running!"
+![image](https://github.com/user-attachments/assets/c89c67ab-77b0-4f18-9686-1f5a5b7cf16f)
+
 
  Conclusion
 This setup ensures a fully automated CI/CD pipeline using GitHub Actions, Docker, and AWS EC2. 🚀
