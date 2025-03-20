@@ -14,12 +14,10 @@
 6. Click **Launch**  
 
 ### 🔗 Connect to EC2 via SSH  
-```bash
+
 ssh -i "your-key.pem" ubuntu@your-ec2-public-ip
 Install Docker on EC2
-bash
-Copy
-Edit
+
 sudo apt update
 sudo apt install -y docker.io
 sudo systemctl start docker
@@ -27,24 +25,20 @@ sudo systemctl enable docker
 sudo usermod -aG docker $USER
 Step 2: Create a Web App and Dockerize It
  Create a Simple Node.js Web App
-bash
-Copy
-Edit
+
 mkdir webapp && cd webapp
 npm init -y
 npm install express
+
  Create index.js
-javascript
-Copy
-Edit
+
 const express = require("express");
 const app = express();
 app.get("/", (req, res) => res.send("🚀 Web App Running!"));
 app.listen(3000, () => console.log("Server running on port 3000"));
+
  Create a Dockerfile
-dockerfile
-Copy
-Edit
+
 FROM node:18
 WORKDIR /app
 COPY package*.json ./
@@ -53,35 +47,30 @@ COPY . .
 EXPOSE 3000
 CMD ["node", "index.js"]
  Build and Run the Docker Container Locally
-bash
-Copy
-Edit
+
 docker build -t mywebapp .
 docker run -d -p 3000:3000 mywebapp
 Step 3: Push Code to GitHub
+
  Initialize Git
-bash
-Copy
-Edit
+
 git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
 ⬆ Create a GitHub Repo & Push Code
-bash
-Copy
-Edit
+
 git remote add origin https://github.com/your-username/webapp.git
 git push -u origin main
+
+
 Step 4: Set Up GitHub Actions for CI/CD
 🛠 Create GitHub Actions Workflow
 Go to GitHub → Your Repo → Actions
 Click "New Workflow" and set up a workflow manually
 Create .github/workflows/deploy.yml
 ⚙ deploy.yml Configuration
-yaml
-Copy
-Edit
+\
 name: Deploy Web App
 
 on:
@@ -117,18 +106,19 @@ jobs:
             docker stop webapp || true
             docker rm webapp || true
             docker run -d -p 80:3000 --name webapp your-dockerhub-username/webapp:latest
+            
 Step 5: Store Secrets in GitHub
+
 Go to GitHub → Repo → Settings → Secrets → Actions
+
 Add the following secrets:
 DOCKER_USERNAME → Your Docker Hub username
 DOCKER_PASSWORD → Your Docker Hub password
 EC2_HOST → Your EC2 Public IP
 EC2_SSH_KEY → Contents of your your-key.pem file
+
 Step 6: Test the CI/CD Pipeline
- Push Changes to GitHub
-bash
-Copy
-Edit
+
 git add .
 git commit -m "Added GitHub Actions for CI/CD"
 git push origin main
@@ -141,7 +131,7 @@ Open http://your-ec2-public-ip in your browser
 You should see:
 " Web App Running!"
 
-🎯 Conclusion
+ Conclusion
 This setup ensures a fully automated CI/CD pipeline using GitHub Actions, Docker, and AWS EC2. 🚀
 
 🔗 GitHub Repo: Automated CI/CD Pipeline with GitHub Actions
