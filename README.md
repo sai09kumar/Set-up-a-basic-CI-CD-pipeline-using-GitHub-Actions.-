@@ -1,44 +1,39 @@
-Step 1: Set Up AWS EC2 Instance
-Launch an EC2 Instance
+# 🚀 Automating Web App Deployment with GitHub Actions, Docker & AWS  
 
-![WhatsApp Image 2025-03-20 at 16 38 48_f9842d0d](https://github.com/user-attachments/assets/029198a3-0cfa-4929-9ac4-ee2586be8b6f)
+## Step 1: Set Up AWS EC2 Instance  
 
+### 🎯 Launch an EC2 Instance  
+1. Go to **AWS Management Console** → **EC2** → **Launch Instance**  
+2. Choose an **Ubuntu 22.04 AMI**  
+3. Select an instance type (e.g., `t2.micro`)  
+4. Configure **Security Groups**:  
+   - Allow **SSH (port 22)** → Your IP  
+   - Allow **HTTP (port 80)** → Public Access  
+   - Allow **HTTPS (port 443)** → Public Access  
+5. Add a **Key Pair** and download the `.pem` file  
+6. Click **Launch**  
 
-Go to AWS Management Console → EC2 → Launch Instance
-Choose an Ubuntu 22.04 AMI
-Select an instance type (e.g., t2.micro)
-Configure security groups:
-Allow SSH (port 22) → Your IP
-Allow HTTP (port 80) → Public Access
-Allow HTTPS (port 443) → Public Access
-Add a key pair and download the .pem file
-Launch the instance
-Connect to EC2 via SSH
-
+### 🔗 Connect to EC2 via SSH  
+```bash
+ssh -i "your-key.pem" ubuntu@your-ec2-public-ip
+Install Docker on EC2
 bash
 Copy
 Edit
-
-Install Docker on EC2
-
-'''
 sudo apt update
 sudo apt install -y docker.io
 sudo systemctl start docker
 sudo systemctl enable docker
 sudo usermod -aG docker $USER
 Step 2: Create a Web App and Dockerize It
-Create a simple Node.js web app 
-'''
-
+ Create a Simple Node.js Web App
 bash
 Copy
 Edit
 mkdir webapp && cd webapp
 npm init -y
 npm install express
-Create index.js
-
+ Create index.js
 javascript
 Copy
 Edit
@@ -46,8 +41,7 @@ const express = require("express");
 const app = express();
 app.get("/", (req, res) => res.send("🚀 Web App Running!"));
 app.listen(3000, () => console.log("Server running on port 3000"));
-Create a Dockerfile
-
+ Create a Dockerfile
 dockerfile
 Copy
 Edit
@@ -58,16 +52,14 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 CMD ["node", "index.js"]
-Build and run the Docker container locally
-
+ Build and Run the Docker Container Locally
 bash
 Copy
 Edit
 docker build -t mywebapp .
 docker run -d -p 3000:3000 mywebapp
 Step 3: Push Code to GitHub
-Initialize Git
-
+ Initialize Git
 bash
 Copy
 Edit
@@ -75,19 +67,18 @@ git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
-Create a GitHub Repo & Push Code
-
+⬆ Create a GitHub Repo & Push Code
 bash
 Copy
 Edit
 git remote add origin https://github.com/your-username/webapp.git
 git push -u origin main
 Step 4: Set Up GitHub Actions for CI/CD
+🛠 Create GitHub Actions Workflow
 Go to GitHub → Your Repo → Actions
-
 Click "New Workflow" and set up a workflow manually
 Create .github/workflows/deploy.yml
-
+⚙ deploy.yml Configuration
 yaml
 Copy
 Edit
@@ -132,10 +123,9 @@ Add the following secrets:
 DOCKER_USERNAME → Your Docker Hub username
 DOCKER_PASSWORD → Your Docker Hub password
 EC2_HOST → Your EC2 Public IP
-EC2_SSH_KEY → Contents of your your-key.pem
+EC2_SSH_KEY → Contents of your your-key.pem file
 Step 6: Test the CI/CD Pipeline
-Push Changes to GitHub
-
+ Push Changes to GitHub
 bash
 Copy
 Edit
@@ -143,19 +133,15 @@ git add .
 git commit -m "Added GitHub Actions for CI/CD"
 git push origin main
 Check GitHub Actions
-
 Go to GitHub → Actions
 You should see the pipeline running
 On success, your app is deployed!
-Access the Web App
-
+ Access the Web App
 Open http://your-ec2-public-ip in your browser
-You should see "🚀 Web App Running!"
+You should see:
+" Web App Running!"
 
-Final Outcome 🚀
-✅ Any push to main triggers GitHub Actions
-✅ Builds & pushes a Docker image to Docker Hub
-✅ SSHs into AWS EC2 & pulls the latest image
-✅ Deploys and runs the web app
+🎯 Conclusion
+This setup ensures a fully automated CI/CD pipeline using GitHub Actions, Docker, and AWS EC2. 🚀
 
-Your CI/CD pipeline is now fully automated! 
+🔗 GitHub Repo: Automated CI/CD Pipeline with GitHub Actions
